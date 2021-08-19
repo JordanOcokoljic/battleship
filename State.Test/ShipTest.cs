@@ -6,48 +6,33 @@ namespace State.Test
     [TestFixture]
     public class ShipTest
     {
-        [Test]
-        public void ConstructorThrowsIfLengthIsTooSmall()
+        [TestCase(0, "Ship length must be greater than or equal to 1")]
+        [TestCase(11, "Ship length must be less than or equal to 10")]
+        public void ConstructorThrowsCorrectly(int length, string expected)
         {
-            var ex = Assert.Throws<ArgumentException>(() => _ = new Ship(0));
-            Assert.That(ex?.Message, Is.EqualTo("Ship length must be greater than or equal to 1"));
+            var ex = Assert.Throws<ArgumentException>(() => _ = new Ship(length));
+            Assert.That(ex?.Message, Is.EqualTo(expected));
         }
 
-        [Test]
-        public void ConstructorThrowsIfLengthIsTooGreat()
+        [TestCase(3, "Hit segment must be less than or equal to the ship's length")]
+        [TestCase(0, "Hit segment must be greater than 0")]
+        public void HitThrowsCorrectly(int segment, string expected)
         {
-            var ex = Assert.Throws<ArgumentException>(() => _ = new Ship(11));
-            Assert.That(ex?.Message, Is.EqualTo("Ship length must be less than or equal to 10"));
+            var ex = Assert.Throws<ArgumentException>(() => new Ship(2).Hit(segment));
+            Assert.That(ex?.Message, Is.EqualTo(expected));
         }
 
-        [Test]
-        public void HitThrowsIfSegmentIsTooGreat()
-        {
-            var ex = Assert.Throws<ArgumentException>(() => new Ship(2).Hit(3));
-            Assert.That(ex?.Message, Is.EqualTo("Hit segment must be less than or equal to the ship's length"));
-        }
-
-        [Test]
-        public void HitThrowsIfSegmentIsTooSmall()
-        {
-            var ex = Assert.Throws<ArgumentException>(() => new Ship(2).Hit(0));
-
-            Assert.That(ex?.Message, Is.EqualTo("Hit segment must be greater than 0"));
-        }
-        
         [Test]
         public void LengthReturnsTheProvidedValue()
         {
-            const int length = 3;
             var ship = new Ship(3);
-            Assert.That(ship.Length, Is.EqualTo(length));
+            Assert.That(ship.Length, Is.EqualTo(3));
         }
 
         [Test]
         public void HitReturnsCorrectValue()
         {
             var ship = new Ship(4);
-           
             Assert.That(ship.Hit(1), Is.True);
             Assert.That(ship.Hit(1), Is.False);
         }
