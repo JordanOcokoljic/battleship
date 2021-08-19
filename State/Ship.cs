@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace State
 {
     /// <summary>
-    /// Class <c>Ship</c> represents a ship in a game of battleship.
+    /// Class <c>Ship</c> represents a ship in a game of Battleship.
     /// </summary>
     public class Ship
     {
