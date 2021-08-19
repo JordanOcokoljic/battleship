@@ -24,7 +24,6 @@ namespace State.Test
         public void HitThrowsIfSegmentIsTooGreat()
         {
             var ex = Assert.Throws<ArgumentException>(() => new Ship(2).Hit(3));
-            
             Assert.That(ex?.Message, Is.EqualTo("Hit segment must be less than or equal to the ship's length"));
         }
 
