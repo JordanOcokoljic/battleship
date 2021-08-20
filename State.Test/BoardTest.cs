@@ -19,7 +19,7 @@ namespace State.Test
         {
             var board = new Board();
             board.AddShip(7, 7, Board.Direction.North, new Ship(2));
-            
+
             var ex = Assert.Throws<ArgumentException>(() => board.AddShip(x, y, direction, new Ship(3)));
             Assert.That(ex?.Message, Is.EqualTo(expected));
         }
@@ -44,7 +44,7 @@ namespace State.Test
         {
             var ship = new Ship(2);
             var board = new Board();
-            
+
             board.AddShip(0, 0, Board.Direction.North, ship);
             Assert.That(board.AllSunk, Is.False);
 

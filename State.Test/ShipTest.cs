@@ -41,7 +41,7 @@ namespace State.Test
         public void IsSunkIndicatesWhenAShipIsSunk()
         {
             var ship = new Ship(2);
-            
+
             ship.Hit(1);
             Assert.That(ship.IsSunk, Is.False);
 

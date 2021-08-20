@@ -78,16 +78,16 @@ namespace State
         }
 
         /// <summary>
-        /// Returns the origin coordinates for a <see cref="Ship"/>.
+        ///     Returns the origin coordinates for a <see cref="Ship" />.
         /// </summary>
         /// <param name="ship">
-        /// The ship to get the origin coordinates of.
+        ///     The ship to get the origin coordinates of.
         /// </param>
         /// <returns>
-        /// The origin coordinates of the ship.
+        ///     The origin coordinates of the ship.
         /// </returns>
         /// <exception cref="ArgumentException">
-        /// The provided <c>ship</c> was not on the board.
+        ///     The provided <c>ship</c> was not on the board.
         /// </exception>
         private (int x, int y) GetShipOrigin(Ship ship)
         {
@@ -168,16 +168,16 @@ namespace State
         }
 
         /// <summary>
-        /// Registers an attack on the board.
+        ///     Registers an attack on the board.
         /// </summary>
         /// <param name="x">
-        /// The <c>x</c> coordinate of the tile on the board being attacked.
+        ///     The <c>x</c> coordinate of the tile on the board being attacked.
         /// </param>
         /// <param name="y">
-        /// The <c>y</c> coordinate of the tile on the board being attacked.
+        ///     The <c>y</c> coordinate of the tile on the board being attacked.
         /// </param>
         /// <returns>
-        /// If the attack resulted in a new hit on a ship.
+        ///     If the attack resulted in a new hit on a ship.
         /// </returns>
         public bool Attack(int x, int y)
         {
