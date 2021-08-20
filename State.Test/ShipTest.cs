@@ -42,10 +42,10 @@ namespace State.Test
         {
             var ship = new Ship(2);
 
-            ship.Hit(1);
+            ship.Hit(0);
             Assert.That(ship.IsSunk, Is.False);
 
-            ship.Hit(2);
+            ship.Hit(1);
             Assert.That(ship.IsSunk, Is.True);
         }
     }

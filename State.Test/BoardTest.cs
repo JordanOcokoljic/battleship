@@ -48,8 +48,8 @@ namespace State.Test
             board.AddShip(0, 0, Board.Direction.North, ship);
             Assert.That(board.AllSunk, Is.False);
 
+            ship.Hit(0);
             ship.Hit(1);
-            ship.Hit(2);
             Assert.That(board.AllSunk, Is.True);
         }
     }
