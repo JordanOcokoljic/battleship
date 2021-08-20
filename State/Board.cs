@@ -139,14 +139,16 @@ namespace State
                     throw new ArgumentException("Provided y coordinate was greater than or equal to 10");
             }
 
-            if (direction switch
+            var invalid = direction switch
             {
                 Direction.North => y + ship.Length >= 10,
                 Direction.East => x - ship.Length < 0,
                 Direction.South => y - ship.Length < 0,
                 Direction.West => x + ship.Length >= 10,
                 _ => throw new InvalidEnumArgumentException("Unsupported direction")
-            })
+            };
+            
+            if (invalid)
                 throw new ArgumentException("Provided coordinates are invalid for the given ship");
 
             for (var i = 0; i < ship.Length; i++)
