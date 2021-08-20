@@ -59,14 +59,14 @@ namespace State
         /// </exception>
         public bool Hit(int segment)
         {
-            if (segment > Length)
+            if (segment >= Length)
             {
-                throw new ArgumentException("Hit segment must be less than or equal to the ship's length");
+                throw new ArgumentException("Hit segment must be less than the ship's length");
             }
 
-            if (segment <= 0)
+            if (segment < 0)
             {
-                throw new ArgumentException("Hit segment must be greater than 0");
+                throw new ArgumentException("Hit segment cannot be less than 0");
             }
             
             if (_destroyed.Contains(segment))

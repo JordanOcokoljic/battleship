@@ -14,8 +14,8 @@ namespace State.Test
             Assert.That(ex?.Message, Is.EqualTo(expected));
         }
 
-        [TestCase(3, "Hit segment must be less than or equal to the ship's length")]
-        [TestCase(0, "Hit segment must be greater than 0")]
+        [TestCase(3, "Hit segment must be less than the ship's length")]
+        [TestCase(-1, "Hit segment cannot be less than 0")]
         public void HitThrowsCorrectly(int segment, string expected)
         {
             var ex = Assert.Throws<ArgumentException>(() => new Ship(2).Hit(segment));
