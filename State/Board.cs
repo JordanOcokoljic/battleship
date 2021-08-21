@@ -147,7 +147,7 @@ namespace State
                 Direction.West => x + ship.Length >= 10,
                 _ => throw new InvalidEnumArgumentException("Unsupported direction")
             };
-            
+
             if (invalid)
                 throw new ArgumentException("Provided coordinates are invalid for the given ship");
 

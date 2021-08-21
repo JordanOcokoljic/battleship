@@ -11,7 +11,7 @@ namespace State.Test
             var player = new Player("Jordan", new Board());
             Assert.That(player.Name, Is.EqualTo("Jordan"));
         }
-        
+
         [Test]
         public void BoardReturnsTheBoardAssociatedWithThePlayer()
         {
