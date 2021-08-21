@@ -57,16 +57,16 @@ namespace State
         /// <exception cref="ArgumentException">
         ///     The provided segment was greater than the <see cref="Length" /> of the ship, or less than zero.
         /// </exception>
-        public bool Hit(int segment)
+        public AttackOutcome Hit(int segment)
         {
             if (segment >= Length) throw new ArgumentException("Hit segment must be less than the ship's length");
 
             if (segment < 0) throw new ArgumentException("Hit segment cannot be less than 0");
 
-            if (_destroyed.Contains(segment)) return false;
+            if (_destroyed.Contains(segment)) return AttackOutcome.AlreadyDestroyed;
 
             _destroyed.Add(segment);
-            return true;
+            return AttackOutcome.DestroyedSegment;
         }
     }
 }

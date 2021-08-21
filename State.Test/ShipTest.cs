@@ -33,8 +33,8 @@ namespace State.Test
         public void HitReturnsCorrectValue()
         {
             var ship = new Ship(4);
-            Assert.That(ship.Hit(1), Is.True);
-            Assert.That(ship.Hit(1), Is.False);
+            Assert.That(ship.Hit(1), Is.EqualTo(AttackOutcome.DestroyedSegment));
+            Assert.That(ship.Hit(1), Is.EqualTo(AttackOutcome.AlreadyDestroyed));
         }
 
         [Test]

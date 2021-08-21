@@ -24,11 +24,11 @@ namespace State.Test
             Assert.That(ex?.Message, Is.EqualTo(expected));
         }
 
-        [TestCase(3, 3, false)]
-        [TestCase(4, 4, true)]
-        [TestCase(4, 3, true)]
-        [TestCase(4, 2, false)]
-        public void AttackDamagesShip(int x, int y, bool hits)
+        [TestCase(3, 3, AttackOutcome.Miss)]
+        [TestCase(4, 4, AttackOutcome.DestroyedSegment)]
+        [TestCase(4, 3, AttackOutcome.DestroyedSegment)]
+        [TestCase(4, 2, AttackOutcome.AlreadyDestroyed)]
+        public void AttackDamagesShip(int x, int y, AttackOutcome outcome)
         {
             var board = new Board();
             var ship = new Ship(3);
@@ -36,7 +36,7 @@ namespace State.Test
             board.AddShip(4, 4, Board.Direction.South, ship);
 
             var hit = board.Attack(x, y);
-            Assert.That(hit, Is.EqualTo(hits));
+            Assert.That(hit, Is.EqualTo(outcome));
         }
 
         [Test]

@@ -181,10 +181,10 @@ namespace State
         /// <returns>
         ///     If the attack resulted in a new hit on a ship.
         /// </returns>
-        public bool Attack(int x, int y)
+        public AttackOutcome Attack(int x, int y)
         {
             var ship = GetShipAtLocation(x, y);
-            if (ship == null) return false;
+            if (ship == null) return AttackOutcome.Miss;
 
             var (hitX, hitY) = GetShipOrigin(ship);
             var segment = Math.Abs(x - hitX + y - hitY);
