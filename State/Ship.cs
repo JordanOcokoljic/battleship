@@ -52,7 +52,8 @@ namespace State
         ///     The part of the <see cref="Ship" /> to hit.
         /// </param>
         /// <returns>
-        ///     True if a new segment has been destroyed, false otherwise.
+        ///     Returns <see cref="AttackOutcome.AlreadyDestroyed"/> if the hit is on an already hit segment, or
+        ///     <see cref="AttackOutcome.DestroyedSegment"/> if a new segment has been destroyed. 
         /// </returns>
         /// <exception cref="ArgumentException">
         ///     The provided segment was greater than the <see cref="Length" /> of the ship, or less than zero.
