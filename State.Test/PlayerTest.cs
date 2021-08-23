@@ -19,5 +19,13 @@ namespace State.Test
             var player = new Player("Jordan", board);
             Assert.That(player.Board, Is.SameAs(board));
         }
+
+        [Test]
+        public void FactoryMethodCreatesPlayerCorrectly()
+        {
+            var player = Player.New("Jordan");
+            Assert.That(player.Name, Is.EqualTo("Jordan"));
+            Assert.That(player.Board, Is.Not.Null);
+        }
     }
 }
