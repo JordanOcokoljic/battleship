@@ -18,47 +18,19 @@ namespace State
             Battleship,
             Destroyer,
             Submarine,
-            PatrolBoat,
+            PatrolBoat
         }
-        
-        /// <summary>
-        ///     Factory method for creating new <see cref="Ship"/> instances in accordance with the Hasbro game rules.
-        /// </summary>
-        /// <param name="kind">
-        ///     The <see cref="Ship.Kind"/> of <see cref="Ship"/> to create.
-        /// </param>
-        /// <returns>
-        ///     A <see cref="Ship"/> with a <see cref="Ship.Length"/> determined by the <see cref="Ship.Kind"/> in
-        ///     accordance with the Hasbro game rules.
-        /// </returns>
-        /// <exception cref="InvalidEnumArgumentException">
-        ///     The provided Kind was unsupported by the factory method.
-        /// </exception>
-        public static Ship New(Kind kind)
-        {
-            var length = kind switch
-            {
-                Kind.Carrier => 5,
-                Kind.Battleship => 4,
-                Kind.Destroyer => 3,
-                Kind.Submarine => 3,
-                Kind.PatrolBoat => 2,
-                _ => throw new InvalidEnumArgumentException("Unsupported Kind for Ship factory method")
-            };
 
-            return new Ship(length);
-        }
-        
-        /// <summary>
-        ///     The length of the ship.
-        /// </summary>
-        public readonly int Length;
-        
         /// <summary>
         ///     The "segments" of the ship that have been marked as destroyed, from the origin of the ship on the grid.
         /// </summary>
         private readonly List<int> _destroyed;
-        
+
+        /// <summary>
+        ///     The length of the ship.
+        /// </summary>
+        public readonly int Length;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Ship" /> class.
         /// </summary>
@@ -87,14 +59,42 @@ namespace State
         public bool IsSunk => _destroyed.Count == Length;
 
         /// <summary>
+        ///     Factory method for creating new <see cref="Ship" /> instances in accordance with the Hasbro game rules.
+        /// </summary>
+        /// <param name="kind">
+        ///     The <see cref="Ship.Kind" /> of <see cref="Ship" /> to create.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="Ship" /> with a <see cref="Ship.Length" /> determined by the <see cref="Ship.Kind" /> in
+        ///     accordance with the Hasbro game rules.
+        /// </returns>
+        /// <exception cref="InvalidEnumArgumentException">
+        ///     The provided Kind was unsupported by the factory method.
+        /// </exception>
+        public static Ship New(Kind kind)
+        {
+            var length = kind switch
+            {
+                Kind.Carrier => 5,
+                Kind.Battleship => 4,
+                Kind.Destroyer => 3,
+                Kind.Submarine => 3,
+                Kind.PatrolBoat => 2,
+                _ => throw new InvalidEnumArgumentException("Unsupported Kind for Ship factory method")
+            };
+
+            return new Ship(length);
+        }
+
+        /// <summary>
         ///     Marks a portion of the <see cref="Ship" /> as destroyed by an attack.
         /// </summary>
         /// <param name="segment">
         ///     The part of the <see cref="Ship" /> to hit.
         /// </param>
         /// <returns>
-        ///     Returns <see cref="AttackOutcome.AlreadyDestroyed"/> if the hit is on an already hit segment, or
-        ///     <see cref="AttackOutcome.DestroyedSegment"/> if a new segment has been destroyed. 
+        ///     Returns <see cref="AttackOutcome.AlreadyDestroyed" /> if the hit is on an already hit segment, or
+        ///     <see cref="AttackOutcome.DestroyedSegment" /> if a new segment has been destroyed.
         /// </returns>
         /// <exception cref="ArgumentException">
         ///     The provided segment was greater than the <see cref="Length" /> of the ship, or less than zero.

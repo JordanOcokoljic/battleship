@@ -6,17 +6,6 @@ namespace State
     public class Player
     {
         /// <summary>
-        ///     Easier method for creating a <see cref="Player"/> creates the board itself.
-        /// </summary>
-        /// <param name="name">
-        ///     The name of the player.
-        /// </param>
-        /// <returns>
-        ///     The fully initialized <see cref="Player"/> instance.
-        /// </returns>
-        public static Player New(string name) => new Player(name, new Board());
-        
-        /// <summary>
         ///     The <see cref="Board" /> associated with this <see cref="Player" />.
         /// </summary>
         public readonly Board Board;
@@ -39,6 +28,20 @@ namespace State
         {
             Name = name;
             Board = board;
+        }
+
+        /// <summary>
+        ///     Easier method for creating a <see cref="Player" /> creates the board itself.
+        /// </summary>
+        /// <param name="name">
+        ///     The name of the player.
+        /// </param>
+        /// <returns>
+        ///     The fully initialized <see cref="Player" /> instance.
+        /// </returns>
+        public static Player New(string name)
+        {
+            return new Player(name, new Board());
         }
     }
 }
