@@ -48,5 +48,16 @@ namespace State.Test
             ship.Hit(1);
             Assert.That(ship.IsSunk, Is.True);
         }
+
+        [TestCase(Ship.Kind.Carrier, 5)]
+        [TestCase(Ship.Kind.Battleship, 4)]
+        [TestCase(Ship.Kind.Destroyer, 3)]
+        [TestCase(Ship.Kind.Submarine, 3)]
+        [TestCase(Ship.Kind.PatrolBoat, 2)]
+        public void ShipFactoryReturnsCorrectShips(Ship.Kind kind, int length)
+        {
+            var ship = Ship.New(kind);
+            Assert.That(ship.Length, Is.EqualTo(length));
+        }
     }
 }

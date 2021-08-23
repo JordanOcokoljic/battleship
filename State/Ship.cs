@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace State
 {
@@ -9,15 +10,55 @@ namespace State
     public class Ship
     {
         /// <summary>
-        ///     The "segments" of the ship that have been marked as destroyed, from the origin of the ship on the grid.
+        ///     The ships that are named as part of the 2002 Hasbro printing of the game Battleship.
         /// </summary>
-        private readonly List<int> _destroyed;
+        public enum Kind
+        {
+            Carrier,
+            Battleship,
+            Destroyer,
+            Submarine,
+            PatrolBoat,
+        }
+        
+        /// <summary>
+        ///     Factory method for creating new <see cref="Ship"/> instances in accordance with the Hasbro game rules.
+        /// </summary>
+        /// <param name="kind">
+        ///     The <see cref="Ship.Kind"/> of <see cref="Ship"/> to create.
+        /// </param>
+        /// <returns>
+        ///     A <see cref="Ship"/> with a <see cref="Ship.Length"/> determined by the <see cref="Ship.Kind"/> in
+        ///     accordance with the Hasbro game rules.
+        /// </returns>
+        /// <exception cref="InvalidEnumArgumentException">
+        ///     The provided Kind was unsupported by the factory method.
+        /// </exception>
+        public static Ship New(Kind kind)
+        {
+            var length = kind switch
+            {
+                Kind.Carrier => 5,
+                Kind.Battleship => 4,
+                Kind.Destroyer => 3,
+                Kind.Submarine => 3,
+                Kind.PatrolBoat => 2,
+                _ => throw new InvalidEnumArgumentException("Unsupported Kind for Ship factory method")
+            };
 
+            return new Ship(length);
+        }
+        
         /// <summary>
         ///     The length of the ship.
         /// </summary>
         public readonly int Length;
-
+        
+        /// <summary>
+        ///     The "segments" of the ship that have been marked as destroyed, from the origin of the ship on the grid.
+        /// </summary>
+        private readonly List<int> _destroyed;
+        
         /// <summary>
         ///     Initializes a new instance of the <see cref="Ship" /> class.
         /// </summary>
